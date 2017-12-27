@@ -1,0 +1,24 @@
+galaxy_info:
+  author: Nazar Halokha
+  description: Installation of Spark standalone
+  company: Home
+  license: Apache
+
+  min_ansible_version: 1.2
+
+  github_branch: master
+
+  platforms:
+   - name: Ubuntu
+     versions:
+      - all
+
+  galaxy_tags:
+    - apache
+    - spark
+    - standalone
+    - master
+    - slave
+    - slaves
+
+dependencies: []

@@ -1,0 +1,58 @@
+---
+# Downloading Spark and Scala
+
+- name: Downloading Spark
+  get_url:
+    url: "{{ spark.url }}/spark-{{ spark.version }}/spark-{{ spark.version }}-bin-hadoop{{ hadoop.version}}.tgz"
+    dest: "{{ spark.download_path }}/spark-{{ spark.version }}-bin-hadoop{{ hadoop.version }}.tgz"
+    validate_certs: no
+    force: no
+    mode: 0777
+
+- name: Exstracting Spark
+  become: true
+  unarchive:
+    remote_src: yes
+    src: "{{ spark.download_path }}/spark-{{ spark.version }}-bin-hadoop{{ hadoop.version }}.tgz"
+    dest: "{{ spark.install_path }}"
+
+- name: Setting Spark environment variables
+  become: true
+  template:
+    src: "{{ spark_profile_template }}"
+    dest: "{{ profile }}/spark.sh"
+    mode: 0775
+    owner: "{{ spark.user }}"
+    group: "{{ spark.group }}"
+
+- name: Checking Spark logs directory
+  become: true
+  file:
+    state: directory
+    path: "{{ spark.log_dir }}"
+    owner: "{{ spark.user }}"
+    group: "{{ spark.group }}"
+    mode: 0775
+
+- name: Downloading Scala
+  get_url:
+    url: "{{ scala.site }}/{{ scala.version }}/scala-{{ scala.version }}.tgz"
+    dest: "{{ spark.download_path }}"
+    validate_certs: no
+    mode: 0775
+
+- name: Exstracting Scala
+  become: true
+  unarchive:
+    remote_src: yes
+    src: "{{ spark.download_path }}/scala-{{ scala.version }}.tgz"
+    dest: "{{ scala.install_path }}"
+
+- name: Setting Scala environment variables
+  become: true
+  template:
+    src: "{{ scala_profile_template }}"
+    dest: "{{ profile }}/scala.sh"
+    mode: 0775
+    owner: "{{ spark.user }}"
+    group: "{{ spark.group }}"

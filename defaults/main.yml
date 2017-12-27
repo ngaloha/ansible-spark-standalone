@@ -1,0 +1,20 @@
+---
+# defaults file for ansible-spark-standalone
+
+hadoop:
+  version: "2.7"
+
+spark:
+  version: 2.2.1
+  #url: "http://www-eu.apache.org/dist/spark"
+  url: "http://apache.volia.net/spark"
+  download_path: "/tmp"
+  install_path: "/opt"
+  log_dir: "/var/log/spark"
+  user: "root"
+  group: "root"
+
+scala:
+  version: "2.11.12"
+  site: "http://downloads.lightbend.com/scala"
+  install_path: "/opt"

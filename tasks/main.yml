@@ -1,0 +1,4 @@
+---
+# tasks file for ansible-spark-standalone
+- include_tasks: install.yml
+- include_tasks: master.yml

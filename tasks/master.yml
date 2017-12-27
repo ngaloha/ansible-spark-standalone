@@ -1,0 +1,11 @@
+---
+# Spark master operation configurations
+
+- name: Configuring Spark Slaves configuration file
+  become: true
+  template:
+    src: "{{ slaves_template }}"
+    dest: "{{ spark.install_path }}/spark-{{ spark.version }}-bin-hadoop{{ hadoop.version}}/conf/slaves"
+    mode: 0775
+    owner: "{{ spark.user }}"
+    group: "{{ spark.group }}"

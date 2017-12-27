@@ -1,0 +1,14 @@
+---
+# vars file for ansible-spark-standalone
+
+# Profile path for putting scripts in
+profile: /etc/profile.d
+
+# Scala profile for exporting in profile.d
+scala_profile_template: scala.sh.j2
+
+# Spark profile for exporting in profile.d
+spark_profile_template: spark.sh.j2
+
+# Spark slaves config file
+slaves_template: slaves.j2

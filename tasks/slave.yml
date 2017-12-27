@@ -1,0 +1,5 @@
+---
+# Spark slave related tasks
+
+- name: Starting Spark master
+  script: "{{ spark.install_path }}/spark-{{ spark.version }}-bin-hadoop{{ hadoop.version }}/sbin/start-slave.sh  spark://{{ groups.spark-master }}:7077"
